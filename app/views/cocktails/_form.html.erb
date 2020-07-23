@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <!--<h1>Create a new restaurant</h1>-->
+      <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :name %>
+        <!-- <%= f.association :ingredients %>
+        <%= f.input :doses, as: :text, :input_html => { class: 'text-area', :rows => 7, :style => 'width: 100%' } %> -->
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
