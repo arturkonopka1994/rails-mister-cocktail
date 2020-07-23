@@ -20,6 +20,10 @@ class CocktailsController < ApplicationController
     end
   end
 
+  # def update
+    
+  # end
+
   def destroy
     @cocktail.destroy
     redirect_to cocktails_path
