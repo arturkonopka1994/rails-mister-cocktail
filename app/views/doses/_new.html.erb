@@ -1,6 +1,6 @@
 <h3>Add a new dose</h3>
 <%= simple_form_for [cocktail, dose] do |f| %>
-  <%= f.association :ingredient, input_html: { class: "select2" }, include_hidden: false %>
+  <%= f.association :ingredient, input_html: { class: "select2" }, style: "color: black !important" %>
   <%= f.input :description %>
   <%= f.button :submit, class: "btn btn-primary", style: "background-color: rgb(237,48,114); border:none" %>
 <% end %>

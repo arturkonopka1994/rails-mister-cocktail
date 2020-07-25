@@ -1,6 +1,6 @@
 <h3>Add a review</h3>
 <%= simple_form_for [cocktail, review] do |f| %>
-  <%= f.input :rating, collection: 0..5, class: 'select2' %>
+  <%= f.input :rating, collection: 0..5, class: "text-style" %>
   <%= f.input :content %>
   <%= f.submit class: "btn btn-primary", style: "background-color: rgb(237,48,114); border:none; margin-bottom: 12px"%>
 <% end %>
