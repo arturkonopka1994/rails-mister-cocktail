@@ -4,6 +4,7 @@
       <!--<h1>Create a new restaurant</h1>-->
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name %>
+        <%= f.input :photo %>
         <%= f.submit class: 'btn btn-primary', style: "background-color: rgb(237,48,114); border:none; margin-bottom: 12px" %>
         <%= link_to "Back to all cocktails", root_path, class: 'btn btn-primary', style: "background-color: rgb(237,48,114); border:none; margin-bottom: 12px" %>
       <% end %>
