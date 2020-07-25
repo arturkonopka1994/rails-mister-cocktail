@@ -15,3 +15,15 @@ import 'bootstrap';
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+import { loadDynamicBannerText } from '../components/banner';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your JS functions here
+  // [...]
+  loadDynamicBannerText();
+});
+
+// app/javascript/packs/application.js
+import { initSelect2 } from '../components/init_select2';
+
+initSelect2();

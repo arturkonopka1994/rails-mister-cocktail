@@ -1,66 +1,72 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <%= link_to "Add a new cocktail", new_cocktail_path, class: "btn btn-primary btn-md" %>
-  </a>
-  <a class="navbar-brand-left" href="#">
-    <%= link_to "Home", root_path, class: "btn btn-primary btn-md" %>
-  </a>
+<nav class="navbar" style="background-color: rgb(237,48,114); padding-bottom: 0px; padding-left: 0px; padding-top: 15px;">
+  <ul class="list-inline">
+    <a class="list-inline-item" href="#">
+      <%= link_to "Home", root_path, class: "btn btn-primary btn-md", style: "background-color:rgb(104,138,184); border-radius: 40px; border: none" %>
+    </a>
+    <a class="list-inline-item" href="#">
+      <%= link_to "Add a new cocktail", new_cocktail_path, class: "btn btn-primary btn-md", style: "background-color:rgb(104,138,184); border-radius: 40px; border: none" %>
+    </a>
+  </ul>
 </nav>
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path 'cocktails.jpg' %>');">
-  <div class="banner-content">
-    <h1 style= "color:white"><%= @cocktail.name %></h1>
-  </div>
-</div>
-<div class="container">
-   <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <h3>Recipe</h3>
-      <table class="table table-bordered">
-        <tbody>
-          <thead>
-            <th>Ingredient</th>
-            <th>Description</th>
-            <th>Action</th>
-          </thead>
-          <% @cocktail.doses.each do |dose| %>
-            <tr>
-              <td><%= dose.ingredient.name %></td>
-              <td><%= dose.description %></td>
-              <td>
-                <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class="fa fa-trash destroy_dose"></i>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-12 col-md-6">
-      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+<div class="container-main">
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path 'cocktails.jpg' %>');">
+    <div class="banner-content">
+      <h1 style= "color:white"><%= @cocktail.name %></h1>
     </div>
   </div>
-
-  <h3>Reviews</h3>
-  <% if @cocktail.reviews.empty? %>
-    <p>Be the first to let a review</p>
-  <% else %>
-    <ul class="list-group">
-      <% @cocktail.reviews.each do |review| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <span class="badge badge-primary badge-pill">
-            <% counter = 0 %>
-            <% 5.times do %>
-              <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
-              <% counter += 1 %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h3>Recipe</h3>
+        <table class="table table-striped table-borderless">
+          <tbody>
+            <thead>
+              <th>Ingredient</th>
+              <th>Description</th>
+              <th></th>
+            </thead>
+            <% @cocktail.doses.each do |dose| %>
+              <tr>
+                <td><%= dose.ingredient.name %></td>
+                <td><%= dose.description %></td>
+                <td>
+                  <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fa fa-trash destroy_dose"></i>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </span>
-          <%= review.content %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+      </div>
+    </div>
 
-  <%= render "reviews/new", cocktail: @cocktail, review: @review %>
-  
+    <h3>Reviews</h3>
+    <% if @cocktail.reviews.empty? %>
+      <p>Be the first to leave a review</p>
+    <% else %>
+      <ul class="list-group" style="margin-bottom: 12px;">
+        <% @cocktail.reviews.each do |review| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color:rgb(20,17,58)">
+            <span class="badge">
+              <% counter = 0 %>
+              <% 5.times do %>
+                <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
+                <% counter += 1 %>
+              <% end %>
+            </span>
+            <%= review.content %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= render "reviews/new", cocktail: @cocktail, review: @review %> 
+    
+    <%= link_to "Home", root_path, style: "color:gold" %>
+    
+  </div>
 </div>
